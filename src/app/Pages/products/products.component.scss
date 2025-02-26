@@ -1,0 +1,82 @@
+h1{
+    font-weight: 600;
+}
+.line::before{
+    content: '';
+    position: absolute;
+background-color: #CA1515;
+    width: 50%;
+    height: 0.1rem;
+    bottom: 0;
+  
+    
+}
+.lineF{
+    padding-bottom: 5px;
+}
+.lineF::before{
+    content: '';
+    position: absolute;
+background-color: #CA1515;
+    width: 100%;
+    height: 0.1rem;
+    bottom: 0;
+  
+    
+}
+.stype{
+    cursor: pointer;
+}
+.hov{
+    background-color: white;
+ 
+ display: flex;
+ align-items: center;
+ justify-content: center;
+    font-size: 18px;
+    cursor: pointer; 
+    transition: all ease 0.4s;
+    position: relative;
+    top:12vh;
+    width: 40px;
+    height: 37px;
+    border-radius: 40px;
+
+  
+}
+.hov:hover{
+    background-color:#CA1515 ;
+    color: white;
+    rotate: 360deg;
+}
+.pro img{
+    height:320px ;
+   
+}
+
+.pic{
+   min-height:320px;
+}
+
+
+
+.card:hover .hov{
+ top: 0;
+}
+.star{
+    font-size: 11px;
+    color: rgba(234, 200, 8, 0.996);
+}
+h2{
+    font-weight: 700;
+}
+.cat{
+    transition: 0.3s;
+}
+
+.cat:hover{
+scale: 1.1;
+}
+input:focus{
+    box-shadow: none;
+}

@@ -1,0 +1,98 @@
+<section class="pt-7  ">
+    <div class="title text-center">
+        <h1 class="line relative pb-2 inline-block text-2xl   ">Check Out</h1>
+    </div>
+
+
+    <form class="px-5 max-w-2xl py-5 mx-auto " [formGroup]="checkout" (ngSubmit)="submitForm()">
+       
+        @let phonecontrol=checkout.get('phone');
+        @let citycontrol=checkout.get('city');
+       
+
+       
+     
+
+        <div class="relative z-0 w-full mt-6 mb-2 group">
+            <input formControlName="phone" id="floating_phone"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer"
+                placeholder=" " />
+            <label for="floating_phone"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
+                number</label>
+        </div>
+        @if (phonecontrol?.errors&&phonecontrol?.touched) {
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(phonecontrol?.getError('required')){
+                <li>Phone Number is requierd</li>
+                }
+                @else if (phonecontrol?.getError('pattern')) {
+                <li>invalid Phone Number</li>
+                }
+            </ul>
+        </div>
+
+        }
+      
+        <div class="relative z-0 w-full  mb-2 group mt-5">
+            <select formControlName="city" id="countries" class="cursor-pointer block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer">
+              <option  selected  >Choose a City</option>
+              @for (city of governorates; track $index) {
+                 <option  >{{city}}</option>
+              }
+             
+          
+          
+            </select>  
+                  </div>
+                  @if (citycontrol?.errors&&citycontrol?.touched) {
+                    <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                        role="alert">
+            
+                        <ul class="mt-1.5 list-disc list-inside">
+                            
+                            <li>City is requierd</li>
+                          
+                         
+                        </ul>
+                    </div>
+            
+                    }
+
+        <div class="relative z-0 w-full  mb-2 group mt-9">
+            <textarea formControlName="details"   id="floating_first_name"
+                class="block py-2.5 px-2 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer rounded-sm "
+                placeholder=" "></textarea>
+            <label for="floating_first_name"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-9 ms-1">
+                Details
+            </label>
+        </div>
+
+
+       
+        <div class="btns py-3 space-y-4 sm:space-y-0 sm:flex justify-between  ">
+            <button type="button" [disabled]="checkout.invalid" (click)="PayCash()" routerLink="/product" class=" justify-center bg-gray-300 px-7 w-full sm:w-auto py-3 font-simibold  hover:bg-gray-600 hover:text-white flex items-center gap-2 ">
+               @if (isloading) {
+                 <span class="fa-solid fa-spinner text-[#CA1515] fa-spin "></span>
+               }
+               
+              
+                <i class="fa-solid fa-sack-dollar text-lg"></i>
+                pay cash</button>
+            <button type="submit"  class="justify-center bg-gray-300 px-5 w-full sm:w-auto py-3 font-simibold flex items-center gap-2 hover:bg-gray-600 hover:text-white "> 
+                @if (isloading1) {
+                    <span class="fa-solid fa-spinner text-[#CA1515] fa-spin "></span>
+                  }
+               <img class="size-6" src="/images/payment/payment-2.png" alt="visa"> Pay Online</button>
+        </div>
+    </form>
+
+
+
+
+
+</section>

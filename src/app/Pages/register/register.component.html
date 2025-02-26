@@ -1,0 +1,191 @@
+<section class="pt-7 ">
+    <div class="title text-center">
+        <h1 class="line relative pb-2 inline-block text-2xl   ">Register Now</h1>
+    </div>
+
+
+    <form class="px-5 max-w-xl py-5 mx-auto" [formGroup]="Register" (ngSubmit)="submitForm()">
+        @let namecontrol=Register.get('name');
+        @let Emailcontrol=Register.get('email');
+        @let passwordcontrol=Register.get('password');
+        @let rePasswordcontrol=Register.get('rePassword');
+        @let phonecontrol=Register.get('phone');
+
+        <div class="relative z-0 w-full  mb-2 group">
+            <input formControlName="name" type="text" name="floating_first_name" id="floating_first_name"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer "
+                placeholder=" " />
+            <label for="floating_first_name"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User
+                Name</label>
+        </div>
+        @if (namecontrol?.errors&&namecontrol?.touched) {
+
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(namecontrol?.getError('required')){
+                <li>User Name is requierd</li>
+                }
+
+                @else if(namecontrol?.getError('minlength')){
+                <li>User Name minLength 4 Char</li>
+                }
+                @else if(namecontrol?.getError('maxlength')){
+                <li>User Name minLength 20 Char</li>
+                }
+
+
+            </ul>
+        </div>
+
+        }
+
+
+
+        <div class="relative z-0 w-full mt-6 mb-2 group transition-all">
+            <input formControlName="email" type="email" name="floating_email" id="floating_email"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer"
+                placeholder=" " required />
+            <label for="floating_email"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
+                address</label>
+        </div>
+        @if (Emailcontrol?.errors&&Emailcontrol?.touched) {
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                @if (Emailcontrol?.getError('required')) {
+                <li>Email address is requierd</li>
+                }
+                @else if (Emailcontrol?.getError('email')) {
+                <li>invalid Email</li>
+                }
+
+
+            </ul>
+        </div>
+
+        }
+
+
+        <div class="relative z-0 w-full mt-6 mb-2 group">
+            <input formControlName="phone" id="floating_phone"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer"
+                placeholder=" " />
+            <label for="floating_phone"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
+                number</label>
+        </div>
+        @if (phonecontrol?.errors&&phonecontrol?.touched) {
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(phonecontrol?.getError('required')){
+                <li>Phone Number is requierd</li>
+                }
+                @else if (phonecontrol?.getError('pattern')) {
+                <li>invalid Phone Number</li>
+                }
+            </ul>
+        </div>
+
+        }
+
+
+        <div class="relative z-0 w-full mt-6 mb-2 group">
+            <input formControlName="password" type="password" name="floating_password" id="floating_password"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer"
+                placeholder=" " required />
+            <label for="floating_password"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+        </div>
+        @if (passwordcontrol?.errors&&passwordcontrol?.touched) {
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(passwordcontrol?.getError('required')){
+                <li>Password is requierd</li>
+                }
+                @else if (passwordcontrol?.getError('pattern')) {
+                <li>At least one lowercase character </li>
+                <li>Min length 7 char</li>
+                }
+            </ul>
+        </div>
+
+        }
+
+
+        <div class="relative z-0 w-full mt-6 mb-2 group">
+            <input formControlName="rePassword" type="password" name="repeat_password" id="floating_repeat_password"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-700 focus:outline-none focus:ring-0 focus:border-green-700 peer"
+                placeholder=" " required />
+            <label for="floating_repeat_password"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-700 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
+                password</label>
+        </div>
+        @if (Register.getError('mismatch')&&rePasswordcontrol?.touched&&rePasswordcontrol?.value!=null) {
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                <li>Confirm Password is incorrect</li>
+            </ul>
+        </div>
+
+        }
+        @if (rePasswordcontrol?.getError('required')&&rePasswordcontrol?.touched) {
+        <div class="flex p-4 py-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+            role="alert">
+
+            <ul class="mt-1.5 list-disc list-inside">
+                <li>Confirm Password Required</li>
+            </ul>
+        </div>
+
+        }
+<div class="flex items-center justify-between py-5 flex-wrap gap-3">
+      <button [disabled]="isLoading" type="submit"
+            class="text-white bg-green-700 hover:bg-green-800  focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-700 dark:hover:bg-green-800 ">Register
+            Now
+            @if (isLoading) {
+                  <i class="fa-solid fa-spinner fa-spin ms-1"></i>
+            }
+          
+        
+        </button>
+        <!-- @if (msgErr) {
+            <div class="w-full flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                  <span class="font-medium ">{{msgErr}}</span> 
+                </div>
+              </div>
+        } -->
+        @if (msgsuc) {
+            <div class="w-full flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+                <i style="font-size: 10px;" class="fa-solid fa-check bg-green-700 text-white rounded-full p-1 size-[15px] flex items-center justify-center me-1"></i>
+                <span class="sr-only">Info</span>
+                <div>
+                  <span class="font-medium">{{msgsuc}}</span> 
+                </div>
+              </div> 
+        }
+            
+            <p class="text-center   w-full sm:w-auto"> already have an account ? <a class="font-semibold text-green-700 cursor-pointer" routerLink="/login" >Login</a></p>
+</div>
+      
+    </form>
+
+
+
+
+</section>

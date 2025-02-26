@@ -1,0 +1,52 @@
+h1{
+    font-weight: 600;
+}
+.line::before{
+    content: '';
+    position: absolute;
+background-color: #CA1515;
+    width: 50%;
+    height: 0.1rem;
+    bottom: 0;
+  
+    
+}
+.lineF{
+    padding-bottom: 5px;
+}
+.lineF::before{
+    content: '';
+    position: absolute;
+background-color: #CA1515;
+    width: 100%;
+    height: 0.1rem;
+    bottom: 0;
+  
+    
+}
+.stype{
+    cursor: pointer;
+}
+
+
+.pro img{
+    height:250px ;
+    
+   
+}
+
+
+
+h2{
+    font-weight: 700;
+}
+.cat{
+    transition: 0.3s;
+}
+
+.cat:hover{
+scale: 1.08;
+}
+input:focus{
+    box-shadow: none;
+}

@@ -1,0 +1,23 @@
+
+button{
+    transition: all ease 0.3s;
+}
+h2{
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+img{
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
+a:hover{
+    color:#CA1515 ;
+}
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #CA1515; /* يمكنك تغيير اللون حسب التصميم */
+}

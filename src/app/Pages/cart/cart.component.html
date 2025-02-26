@@ -1,0 +1,115 @@
+
+<section class=" max-w-5xl pb-3 flex justify-center mx-auto  pt-8 px-2 min-h-[40vh]">
+  @if (num>=1) {
+    <div class="contain  w-full">
+        <div class="nav grid grid-cols-12 font-semibold text-[13px] md:text-[15px]">
+         <div class="col-span-6 ">
+ <h1>PRODUCT</h1>
+         </div>
+        
+         <div class="col-span-3 text-center">
+             <h1>QUANTITY</h1>
+         </div>
+         <div class="col-span-2 text-center">
+             <h1>Price</h1>
+         </div>
+     </div>
+     <div class="line w-full h-[0.008rem] bg-gray-300 mt-2"></div>
+    
+ 
+     <!-- item of cart  -->
+      @for (pro of products.products; track $index) {
+         <div class="grid grid-cols-12 pt-1 text-[13px] md:text-[15px]">
+         <div class="col-span-6 flex items-center  space-x-3">
+ <img class="size-20 object-contain" [src]="pro.product.imageCover" alt="ss">
+ <!-- title -->
+ <div class="flex flex-col">
+     <h2>{{pro.product.title.split(' ',2).join(' ')}}</h2>
+ <span class="flex text-gray-500 text-sm" >
+     <ul>
+         <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+         <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+         <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+         <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+         <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+     </ul>
+     ({{pro.product.ratingsAverage}})
+ </span>
+ </div>
+         </div>
+        
+         <div class="col-span-3 flex items-center justify-center">
+             <div class="relative flex items-center w-[7rem] justify-center ">
+                 <div class=" flex ">
+                  <button (click)="decrease(pro.product.id,pro.count-1)"   type="button"   class="   ">
+                      <svg class="size-[10px] text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                      </svg>
+                  </button>
+                  <span class=" bg-white border-0 h-12  text-gray-900 text-[13px] md:text-[15px]  block w-[50px] md:w-14  outline-none flex items-center justify-center">
+                     {{pro.count}}
+                  </span>
+ 
+                  <button (click)="increase(pro.product.id,pro.count+1)" type="button"  class="  ">
+                      <svg class="size-[10px] text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                      </svg>
+                  </button>
+                 </div>
+              </div>
+         </div>
+         <div class="col-span-2 flex items-center justify-center text-[#CA1515]">
+ <h2>{{pro.price*pro.count |currency:'GBP'}}</h2>
+         </div>
+         <div class="col-span-1 flex items-center justify-center text-[#CA1515]">
+ <span (click)="deleteProOfCart(pro.product.id)" class="fa-solid fa-trash cursor-pointer  hover:text-[black] text-[17px] md:text-[20px]"></span>
+         </div>
+         
+     </div>
+     <div class="line w-full h-[0.008rem] bg-gray-300 mt-1"></div>
+ 
+      }
+      <div class="nav grid grid-cols-12 font-semibold text-[13px] md:text-[15px] py-5">
+         <div class="col-span-5 ">
+ 
+         </div>
+      
+         <div class="col-span-4 text-start  ps-[12%] font-bold text-gray-500 ">
+             <h1 >Total Price :</h1>
+            
+         </div>
+         <div class="col-span-2 text-center text-[#CA1515]">
+             <h1>{{products.totalCartPrice |currency:'GBP'}}</h1>
+         </div>
+     </div>
+     <div class="line w-full h-[0.008rem] bg-gray-300 mt-2"></div>
+    
+ <div class="btns py-3 space-y-4 sm:space-y-0 sm:flex justify-between ">
+     <button routerLink="/product" class=" justify-center bg-gray-300 px-7 w-full sm:w-auto py-3 font-simibold  hover:bg-gray-600 hover:text-white ">Continue Shopping</button>
+     <button (click)="CheckOut(products._id)" class="justify-center bg-gray-300 px-5 w-full sm:w-auto py-3 font-simibold flex items-center gap-2 hover:bg-gray-600 hover:text-white "> 
+        @if(isloading1){
+            <span class="fa-solid fa-spinner text-[#CA1515] fa-spin "></span>
+             }
+         Procceed To Checkout</button>
+ </div>
+ <button (click)="ShowAlertToDeleteAllCart()"  class="justify-center bg-gray-300 px-7 w-full sm:w-[213px] py-3 font-simibold flex items-center gap-2 hover:bg-gray-600 hover:text-white "> 
+   @if(isloading){
+  <span class="fa-solid fa-spinner text-[#CA1515] fa-spin "></span>
+   }
+  
+    Delete Cart
+    <span class="fa-solid fa-trash text-[#CA1515] "></span>
+</button>
+ 
+ 
+     </div>
+}  
+@else if(num==0) {
+    <div class=" flex justify-center ">
+        <img class="w-[35%]" src="/images/empty-cart.png" alt="">
+    </div>
+}
+
+  
+   
+</section>

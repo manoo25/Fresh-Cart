@@ -1,0 +1,114 @@
+
+<app-slider></app-slider>
+<!-- catigory-slider -->
+<section class="lg:px-16 py-4">
+   <div class="py-4">
+    <h1 class="line relative pb-2 inline-block text-xl ps-3 md:ps-0 md:text-2xl  ">{{'POPULAR CATIGORIES'|translate }}</h1>
+   </div>
+   <div class="">
+      <owl-carousel-o [options]="customOptions ">
+
+       @for (cat of catigories; track cat._id) {
+       
+            <ng-template carouselSlide > 
+                <div class="p-3 px-8 md:px-0 ">
+                          <div class=" border-2 pb-2 overflow-hidden  rounded-[20px] cat cursor-pointer">
+          <img  [src]="cat.image" class="w-full h-[200px]" alt="image-cat">
+          <h2  class="text-green-700  pt-3 text-center cursor-pointer ">{{cat.name}}</h2>
+           </div>
+                </div>
+          
+        </ng-template>
+      
+           
+       }
+       
+      </owl-carousel-o>
+   </div>
+  
+</section>
+
+<!-- products -->
+<section class="px-2 lg:px-16 pt-5 pro">
+
+        <h1 class="line relative pb-2 inline-block text-xl ps-3 md:ps-0 text-2xl  ">{{'NEW PRODUCT'|translate }}</h1>
+
+       
+        
+<div class="max-w-md mx-auto py-3 pt-5">   
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+        <input [(ngModel)]="Stext" type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-3xl bg-gray-50  focus:border-[#CA1515] " placeholder="{{'Search'|translate}}" required />
+       
+    </div>
+</div>
+
+
+
+        <div class="contain grid grid-cols-12  px-2 gap-x-4 gap-y-6 py-6">
+@for (product of products.slice(20,40).reverse() | search : Stext; track $index) {
+    <div class="card col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 cursor-pointer mx-auto min-w-[300px] md:min-w-[100px] md:mx-0">
+        <div class="border-2 pb-3 rounded-[20px] overflow-hidden ">
+    <div class="pic relative overflow-hidden bg-gray-200 w-full">
+        <img [src]="product.imageCover" class="w-full object-fill" alt="">
+        <div class=" absolute  bottom-0 w-full pb-5   ">
+            <div class="contain">
+                <ul class="flex  justify-center gap-6 ">
+                    <li [routerLink]="['/details',product.id]"  class="hov    "><i class="fa-solid fa-eye "></i></li>
+                    <li (click)="addProToheart(product.id)" class="hov  "><i class="fa-regular fa-heart"></i></li>
+                    <li (click)="addProTocart(product.id)" class="hov  "><i class="fa-solid fa-bag-shopping"></i></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="des  flex flex-col gap-1 pt-2">
+        <h1  class="ps-5 text-green-800">{{product.category.name}}</h1>
+        <h1 class="ps-5">{{product.title.split(' ',2).join(' ')}}</h1>
+        <ul  class="flex justify-between px-5">
+          <li> <h2>${{product.price}}</h2></li>
+          <li><i class="fa-solid fa-star star"></i><span class="text-black text-md text-gray-600">{{product.ratingsAverage}}</span> </li>
+        </ul>
+       
+
+    </div>
+        </div>
+    </div>
+}
+        </div>
+
+
+</section>
+
+
+<!-- brand-slider -->
+<section class="lg:px-16 py-4">
+   
+  <h1 class="line relative pb-2 inline-block text-xl ps-3 md:ps-0 text-2xl  ">{{'All BRANDS'|translate }}</h1>
+    <div class="pt-2  px-5 md:px-0">
+       <owl-carousel-o [options]="customOptions2 ">
+ 
+        @for (brand of brands; track $index) {
+        
+             <ng-template carouselSlide > 
+                 <div class="p-3  ">
+                           <div class="  border-2 pb-2 overflow-hidden    cursor-pointer">
+           <img  [src]="brand.image" class=" w-full h-[150px]" alt="image-cat">
+        
+            </div>
+                 </div>
+           
+         </ng-template>
+       
+            
+        }
+        
+       </owl-carousel-o>
+    </div>
+   
+ </section>

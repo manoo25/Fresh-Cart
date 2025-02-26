@@ -1,0 +1,108 @@
+@if(load){
+  <div class="contain flex justify-center md:px-14">
+    <section class=" min-h-[50vh]  inline-block">
+    <div class="nav py-3 ">
+  
+
+<nav class="flex ps-4 md:ps-0" aria-label="Breadcrumb ">
+    <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+      <li class="inline-flex items-center">
+        <a routerLink="/home"  class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#aa1d1dcc] dark:text-gray-400 dark:hover:text-white">
+          <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+          </svg>
+          <a  class="ms-1 text-sm font-medium text-gray-700 hover:text-[#aa1d1dcc] md:ms-2 dark:text-gray-400 dark:hover:text-white">Details</a>
+        </div>
+      </li>
+  
+    </ol>
+  </nav>
+  
+    </div>
+
+    <div class="details grid grid-cols-12 mt-4 pb-3">
+        <!-- picture -->
+        <div class="pic col-span-12 md:col-span-6 px-4 md:px-0 sm:px-14 md:pe-5  md:ps-8 lg:ps-0 xl:ps-14 ">
+
+<div class="main overflow-hidden   sm:px-8 md:px-0 lg:ps-14 ">
+<img class=" h-[390px] w-full  rounded-[20px]  " [src]="cover" alt="">
+</div>
+<div class="mini  flex items-center justify-center  sm:px-8  md:px-0 lg:ps-14   grid grid-cols-4  gap-4 pt-5 pb-2 ">
+@for (item of proDetails.images; track $index) {
+  <img [class.opacity-70]="proDetails.images[$index]==cover"  (click)="changeCover(proDetails.images[$index])" class=" h-[75px] md:h-[80px] w-full col-span-1 rounded-[15px] " [src]="proDetails.images[$index]" alt="">
+}
+    
+  
+   
+</div>
+
+        </div>
+
+        <!-- details -->
+        <div class="data col-span-12 md:col-span-6 space-y-3 ps-4 lg:pt-6">
+<h1 class="text-[25px] font-semibold">{{proDetails.title.split(' ',3).join(' ')}}</h1>
+<p class="text-gray-500">Brand : {{proDetails.brand.name}}</p>
+<div class="flex items-center">
+   <ul>
+    <li class="fa-solid fa-star text-[gold] text-[11px]"></li>
+    <li class="fa-solid fa-star text-[gold] text-[11px]"></li>
+    <li class="fa-solid fa-star text-[gold] text-[11px]"></li>
+    <li class="fa-solid fa-star text-[gold] text-[11px]"></li>
+    <li class="fa-solid fa-star text-[gold] text-[11px]"></li>
+</ul>
+<span class="text-gray-500 text-[15px]">({{proDetails.ratingsAverage}})</span> 
+</div>
+<div class="price">
+    <h2 class="text-[22px] font-bold text-[#CA1515]">${{proDetails.price}}</h2>
+</div>
+<p class="text-gray-500">{{proDetails.description.split(' ',45).join(' ')}}</p>
+
+<div class="add pt-3">
+    
+
+    <form class="flex flex-col lg:flex-row items-center gap-3 ">
+      
+        
+      
+        <!-- <div class="relative flex items-center w-[8rem]">
+           <div class="border-gray-400 border-2 flex rounded-[25px]">
+            <button (click)="decrease()"   type="button"   class="   rounded-s-[25px] p-3 h-12 bg-white  ">
+                <svg class="size-[10px] text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                </svg>
+            </button>
+            <input [(ngModel)]="Qty"  value="{{Qty}}" type="text"  data-input-counter data-input-counter-min="1" data-input-counter-max="50" aria-describedby="helper-text-explanation" class=" bg-white border-0 h-12 text-center text-gray-900 text-sm  block w-full py-2.5   " placeholder="999" value="5" required />
+            <button (click)="increase()" type="button"  class=" rounded-e-[25px] p-3 h-12 bg-white ">
+                <svg class="size-[10px] text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                </svg>
+            </button>
+           </div>
+        </div> -->
+<div class=" pt-3 w-full lg:w-auto min-w-[250px]">
+    <button (click)="addProTocart(proDetails.id)" type="button" class="text-white bg-[#CA1515] hover:bg-black focus:outline-none   font-medium rounded-full text-md px-5 py-3 text-center me-2 mb-2 w-full "><span class="fa-solid fa-bag-shopping"></span> Add To Cart</button>
+</div>
+      
+        <a (click)="addProToheart(proDetails.id)" class="text-gray-500 hover:bg-[#CA1515] hover:text-white size-[30px] border-2 border-gray-400 p-6 flex items-center justify-center rounded-full "> <i class="fa-regular fa-heart "></i></a>
+    </form>
+    
+
+</div>
+
+
+        </div>
+    </div>
+</section>
+</div>
+}
+
+
+

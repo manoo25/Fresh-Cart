@@ -1,0 +1,152 @@
+
+@if(num>=1) {
+<section class=" space-y-5 max-w-7xl pb-3 flex justify-center flex-col mx-auto  pt-8 px-2 min-h-[40vh] ">
+  
+  @if (showOrders) {
+    <div class="orders">
+
+ <div class="title text-center pb-4">
+        <h1 class="lines relative pb-2 inline-block text-2xl   ">{{'My Orders'|translate }}</h1>
+    </div>
+    <div class=" w-full relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-center  text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 ">
+                <tr >
+                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 w-[20%]">
+                        {{'Order Time'|translate }}
+                    </th>
+                    
+                    <th scope="col" class="px-6 py-3  w-[20%]">
+                        {{'Number Of Products'|translate }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 w-[20%]">
+                        {{'Total Price'|translate }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 w-[20%] ">
+                        {{'Payment Type'|translate }}
+                    </th>
+                    <th scope="col" class="px-6 py-3 w-[20%] bg-gray-50 dark:bg-gray-800">
+                        
+                    </th>
+                  
+                </tr>
+            </thead>
+           
+            <tbody>
+                @for (order of Orders; track $index) {
+                  <tr class="border-b border-gray-200 dark:border-gray-700 relative">
+                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                        {{order.createdAt|date:'short'}}
+                    </td>
+                    <td class="px-6 py-4">
+                       {{order.cartItems.length}}
+                    </td>
+                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                        {{order.totalOrderPrice|currency:'GBP'}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{order.paymentMethodType}}
+                    </td>
+                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                        <button 
+                        (click)="getNumOrder(Orders.indexOf(order))"
+                         class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                                {{'Moredetails'|translate }}
+                            </span>
+                            </button>
+                    </td>
+                      <div class=" w-full h-[1px] bg-[#CA1515] absolute left-0 top-0"></div>
+                </tr>  
+                }
+                
+              
+              
+      
+               
+            </tbody>
+        </table>
+
+   </div>
+   
+    </div>
+  }
+    
+ 
+    @if (showDetails) {
+    <div>
+      
+            <div class="contain  w-full">
+                <div class="nav grid grid-cols-12 font-semibold text-[13px] md:text-[15px]">
+                 <div class="col-span-7 ">
+         <h1>PRODUCT</h1>
+                 </div>
+                
+                 <div class="col-span-2 text-center">
+                     <h1>QUANTITY</h1>
+                 </div>
+                 <div class="col-span-3 text-center">
+                     <h1>TOTAL</h1>
+                 </div>
+             </div>
+             <div class="line w-full h-[0.008rem] bg-gray-300 mt-2"></div>
+            
+         
+             <!-- item of cart  -->
+              @for (pro of Orders[orderNum].cartItems; track $index) {
+                 <div class="grid grid-cols-12 pt-1 text-[13px] md:text-[15px]">
+                 <div class="col-span-7 flex items-center  space-x-3">
+         <img class="size-20 object-contain" [src]="pro.product.imageCover" alt="ss">
+         <!-- title -->
+         <div class="flex flex-col">
+             <h2>{{pro.product.title.split(' ',2).join(' ')}}</h2>
+         <span class="flex text-gray-500 text-sm" >
+             <ul>
+                 <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+                 <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+                 <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+                 <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+                 <li class="fa-solid fa-star text-[10px] text-[#EAC809]"></li>
+             </ul>
+             ({{pro.product.ratingsAverage}})
+         </span>
+         </div>
+                 </div>
+                
+                 <div class="col-span-2 flex items-center justify-center text-[#CA1515] ">
+                    <h2 >{{pro.count }}</h2>
+                            </div>
+                 <div class="col-span-3 flex items-center justify-center text-[#CA1515] ">
+         <h2 >{{pro.price |currency:'GBP'}}</h2>
+                 </div>
+                 
+                
+                 
+                 
+                 
+             </div>
+             <div class="line w-full h-[0.008rem] bg-gray-300 mt-1"></div>
+         
+          
+              }
+             
+              
+              <button  (click)="BackToOrders()" class=" mt-4 justify-center bg-gray-300 px-7 w-full sm:w-auto py-3 font-simibold  hover:bg-gray-600 hover:text-white items-center flex gap-2"><span class="fa-solid  fa-arrow-left-long"></span> Back To Orders</button> 
+            
+            
+        
+         
+         
+             </div>
+       
+    </div>
+   }
+    
+  </section>
+}
+  @else if(num==0) {
+    <div class=" flex justify-center ">
+       
+        <img class="w-[30%]" src="/images/no-order.png" alt="">
+    </div>
+}
