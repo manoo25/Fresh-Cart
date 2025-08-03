@@ -11,7 +11,7 @@ FreshCart is a robust and fully-featured e-commerce web application built with A
 
 ## 🌟 Live Demo
 
-🚀 [![Live Demo](https://fresh-cart-rho-pink.vercel.app/)
+🚀 [![Live Demo](https://img.shields.io/badge/Demo-Live-blue?logo=vercel)] https://fresh-cart-rho-pink.vercel.app/)
 Explore the full functionality of the app directly in your browser.
 
 
